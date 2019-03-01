@@ -1,11 +1,17 @@
 import React from 'react';
 
-class Todos extends React.Component {
-	render() {
+function Todos(props) {
 	return (
-			<h1>Hello</h1>
+			<div className="App">
+				<div>
+					<input type="checkbox"/><span> {props.todoItems[0].text}</span>
+				</div>
+				<form>
+					<input type="text"/>
+					<button onClick={props.submit}>Submit</button>
+				</form>
+			</div>
 		)
-	}
 }
 
 export default Todos
