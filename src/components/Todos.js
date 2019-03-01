@@ -2,7 +2,7 @@ import React from 'react';
 
 function Todos(props) {
 	const itemList = props.items.map(item => {
-		return <li key={item.id}><input type="checkbox"/><span> {item.text}</span></li>
+		return <li key={item.id}><input type="checkbox" /><span> {item.text}</span></li>
 	});
 
 	return (

@@ -9,7 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       items: [],
-      currentItem: { text: '', id: 0}
+      currentItem: { text: '', id: 0, isDeleted: false}
     }
     this.addItem = this.addItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +34,7 @@ class App extends React.Component {
       });
     }
   }
-
+  
   render() {
     return (
     <div>
@@ -43,7 +43,9 @@ class App extends React.Component {
       currentItem={this.state.currentItem} 
       items={this.state.items} 
       addItem={this.addItem} 
-      handleChange={this.handleChange}/>
+      handleChange={this.handleChange}
+      deleteItem={this.deleteItem}
+      />
     </div>
     )
   }
