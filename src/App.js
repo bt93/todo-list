@@ -8,24 +8,42 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todoItems: [
-      {
-        text: 'Take out trash'
-      }
-      ]
+      items: [],
+      currentItem: { text: '', id: 0}
     }
+    this.addItem = this.addItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  submit(event) {
+  handleChange(event) {
     event.preventDefault();
-    console.log('Clicked');
+    const {value} = event.target;
+    this.setState(prevState => {
+      return {currentItem: {text: value, id: prevState.currentItem.id + Math.floor(Math.random() * 100000) + 1  }}
+    });
+  }
+
+  addItem(event) {
+    event.preventDefault();
+    const newItem = this.state.currentItem;
+    if (newItem.text !== '') {
+      const items = [...this.state.items, newItem];
+      this.setState({
+        items: items,
+        currentItem: {text: '', id: 0}
+      });
+    }
   }
 
   render() {
     return (
     <div>
       <Header logo={logo}/>
-      <Todos  todoItems={this.state.todoItems} submit={this.submit}/>
+      <Todos 
+      currentItem={this.state.currentItem} 
+      items={this.state.items} 
+      addItem={this.addItem} 
+      handleChange={this.handleChange}/>
     </div>
     )
   }
